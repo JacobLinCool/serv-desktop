@@ -1,0 +1,45 @@
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <link href="./style.css" rel="stylesheet" />
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'" />
+        <title>Click! Serve!</title>
+    </head>
+    <body>
+        <div id="container">
+            <div id="controls">
+                <div id="launch-area">
+                    <button id="launch" class="launch">啟動</button>
+                </div>
+                <div id="config-area">
+                    <label>資料夾</label>
+                    <div>
+                        <input type="text" id="folder" value="" />
+                        <button id="folder-select">選擇</button>
+                    </div>
+                    <label>Port</label>
+                    <div>
+                        <input type="number" id="port" value="" />
+                    </div>
+                    <label>Log</label>
+                    <div>
+                        <div class="toggle">
+                            <input id="log" type="checkbox" /><br />
+                            <b class="b switch"></b>
+                            <b class="b track"></b>
+                        </div>
+                    </div>
+                    <label>記錄檔</label>
+                    <div>
+                        <input type="text" id="logfile" value="" />
+                        <button id="logfile-select">選擇</button>
+                    </div>
+                </div>
+            </div>
+            <div id="logs">
+                <div class="log success">伺服器已就緒</div>
+            </div>
+        </div>
+        <script src="./app.js"></script>
+    </body>
+</html>

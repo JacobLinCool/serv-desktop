@@ -1,0 +1,290 @@
+:root {
+    /* 使用 Nord Theme 的配色，沒有為什麼，只是我喜歡而已 */
+    --nord0: #2e3440;
+    --nord1: #3b4252;
+    --nord2: #434c5e;
+    --nord3: #4c566a;
+    --nord4: #d8dee9;
+    --nord5: #e5e9f0;
+    --nord6: #eceff4;
+    --nord7: #8fbcbb;
+    --nord8: #88c0d0;
+    --nord9: #81a1c1;
+    --nord10: #5e81ac;
+    --nord11: #bf616a;
+    --nord12: #d08770;
+    --nord13: #ebcb8b;
+    --nord14: #a3be8c;
+    --nord15: #b48ead;
+}
+
+/* body 預設會有個 padding，先把它弄掉 */
+html,
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+body {
+    background: var(--nord6);
+    color: var(--nord0);
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+#container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 上面的那個區塊 */
+#controls {
+    width: 100%;
+    height: 320px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    border-bottom: var(--nord4) solid 1px;
+}
+
+#launch-area {
+    width: 320px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#launch-area > button {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    background: var(--nord8);
+    color: var(--nord1);
+    font-size: 2.2rem;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+#launch-area > .launch:hover {
+    width: 180px;
+    height: 180px;
+    background: var(--nord9);
+    color: var(--nord6);
+}
+
+#launch-area > .launch::before {
+    content: "";
+    width: 180px;
+    height: 180px;
+    background: var(--nord8);
+    opacity: 0.5;
+    position: fixed;
+    border-radius: 50%;
+    top: 70px;
+    left: 70px;
+    z-index: -1;
+}
+
+#launch-area > .launched {
+    background: var(--nord14);
+}
+
+#launch-area > .launched:hover {
+    width: 180px;
+    height: 180px;
+    background: var(--nord12);
+    color: var(--nord6);
+}
+
+#launch-area > .launched::before {
+    content: "";
+    width: 180px;
+    height: 180px;
+    background: var(--nord14);
+    opacity: 0.5;
+    position: fixed;
+    border-radius: 50%;
+    top: 70px;
+    left: 70px;
+    z-index: -1;
+}
+
+#config-area {
+    flex: 1;
+    height: 100%;
+    display: grid;
+    align-content: space-evenly;
+    justify-items: center;
+    grid-template-columns: 100px 1fr;
+    grid-gap: 10px;
+    font-size: 1.4rem;
+}
+
+#config-area > label {
+    text-align: right;
+    display: inline-block;
+    width: 100%;
+}
+
+#config-area > div {
+    width: calc(100% - 10px);
+    padding: 0 10px 0 0;
+    display: flex;
+    align-items: center;
+}
+
+#config-area input,
+#config-area button {
+    font-size: 1.4rem;
+    background: var(--nord5);
+    border: none;
+    border-radius: 6px;
+    padding: 4px 8px;
+    transition: all 0.3s;
+}
+
+#config-area input:hover,
+#config-area input:focus,
+#config-area button:hover,
+#config-area button:focus {
+    outline: none;
+    background: var(--nord4);
+}
+
+#folder,
+#logfile {
+    flex: 1;
+}
+
+#config-area #folder-select,
+#config-area #logfile-select {
+    height: 100%;
+    width: 100px;
+    padding: 0;
+    margin: 0 8px;
+    cursor: pointer;
+}
+
+#port {
+    width: 120px;
+}
+
+/* 下面的那個區塊 */
+#logs {
+    width: 100%;
+    flex: 1;
+    overflow: auto;
+    background: var(--nord5);
+}
+
+/* .toggle 就是那個 iOS 風格按鈕 */
+.toggle {
+    position: absolute;
+    width: 45px;
+    height: 30px;
+    border-radius: 75px;
+    background-color: var(--nord5);
+    overflow: hidden;
+    box-shadow: inset 0 0 1.5px 0.75px var(--nord4);
+    margin: 8px 0;
+}
+
+.toggle > input[type="checkbox"] {
+    position: absolute;
+    display: block;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    z-index: 6;
+}
+
+.toggle > input[type="checkbox"] ~ .switch {
+    position: absolute;
+    left: 1.5px;
+    top: 1.5px;
+    bottom: 1.5px;
+    right: 16.5px;
+    background-color: var(--nord6);
+    border-radius: 27px;
+    z-index: 1;
+    transition: 0.25s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    transition-property: left, right;
+    transition-delay: 0s, 0.03s;
+    box-shadow: 0 0.75px 1.5px var(--nord4);
+}
+
+.toggle > input[type="checkbox"] ~ .track {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    transition: 0.25s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    box-shadow: inset 0 0 0 1.5px var(--nord4);
+    border-radius: 30px;
+}
+
+.toggle > input[type="checkbox"]:checked ~ .track {
+    box-shadow: inset 0 0 0 15px var(--nord8);
+}
+
+.toggle > input[type="checkbox"]:checked ~ .switch {
+    right: 1.5px;
+    left: 16.5px;
+    transition: 0.25s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    transition-property: left, right;
+    transition-delay: 0.03s, 0s;
+}
+
+.log {
+    padding: 0 8px;
+    word-break: break-all;
+    transition: all 0.2s;
+}
+
+.log:hover {
+    background: var(--nord4);
+}
+
+.log.success {
+    color: var(--nord14);
+    text-shadow: 0 0 var(--nord1);
+}
+.log.success::before {
+    content: "[success] ";
+}
+
+.log.info {
+    color: var(--nord9);
+}
+.log.info::before {
+    content: "[info] ";
+}
+
+.log.error {
+    color: var(--nord11);
+}
+.log.error::before {
+    content: "[error] ";
+}
+
+.log.warn {
+    color: var(--nord12);
+}
+.log.warn::before {
+    content: "[warn] ";
+}
